@@ -187,6 +187,14 @@ public class ElevensBoard {
      */
     public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        for(int i = 0; i < selectedCards.size();i++){
+            if(selectedCards.size() == 2 && containsPairSum11(selectedCards)){
+                return true;
+            }else if( selectedCards.size() == 3 && containsJQK(selectedCards)){
+                return true
+            }
+        }
+        return false;
     }
 
     /**
