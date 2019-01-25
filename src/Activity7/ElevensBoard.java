@@ -191,7 +191,7 @@ public class ElevensBoard {
             if(selectedCards.size() == 2 && containsPairSum11(selectedCards)){
                 return true;
             }else if( selectedCards.size() == 3 && containsJQK(selectedCards)){
-                return true
+                return true;
             }
         }
         return false;
@@ -207,6 +207,8 @@ public class ElevensBoard {
      */
     public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        List<Integer> everything = cardIndexes();
+        return containsPairSum11(everything) || containsJQK(everything);
     }
 
 
@@ -229,6 +231,11 @@ public class ElevensBoard {
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        int score = 0;
+        for (int i = 0; i < selectedCards.size(); i ++) {
+            score += cards[selectedCards.get(i)].getPointValue();
+        }
+        return (score == 11);
     }
 
     /**
@@ -241,5 +248,18 @@ public class ElevensBoard {
      */
     private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        int jacks = 0, queens = 0, kings = 0;
+        for (int i = 0; i < selectedCards.size(); i ++) {
+            if (cards[i].getRank().equals("jack")) {
+                jacks ++;
+            }
+            if (cards[i].getRank().equals("queen")) {
+                queens ++;
+            }
+            if (cards[i].getRank().equals("king")) {
+                kings ++;
+            }
+        }
+        return (jacks == 1 && queens == 1 && kings == 1);
     }
 }
